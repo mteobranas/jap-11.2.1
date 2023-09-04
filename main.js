@@ -1,15 +1,16 @@
-let username = document.getElementById("name").value;
-let lastname = document.getElementById("lastname").value;
 let btn = document.getElementById("btn");
 let URL = "https://jsonplaceholder.typicode.com/users";
-
-let user = {
-    name: username,
-    lastname: lastname
-}
-
+let user = {};
 btn.addEventListener("click", (e) => {
     e.preventDefault();
+    let username = document.getElementById("name").value;
+    let lastname = document.getElementById("lastname").value;
+    let birthdate = document.getElementById("birthdate").value;
+    user = {
+        name: username,
+        lastname: lastname,
+        date: birthdate
+    }
     showData(URL)
 })
 
@@ -24,7 +25,7 @@ async function showData() {
         })
         let data = await res.json()
         console.log(data)
-        if(!res) throw new Error(res.status)
+        if (!res) throw new Error(res.status)
     } catch (error) {
         console.log(error)
     }
